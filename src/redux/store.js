@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { fakeStoreApi } from './apiSlice';
 
-const store = configureStore({
+const store = configureStore({ 
   reducer: {
     [fakeStoreApi.reducerPath]: fakeStoreApi.reducer,
   },
