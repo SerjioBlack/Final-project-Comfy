@@ -1,3 +1,4 @@
+// apiSlice.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const fakeStoreApi = createApi({
@@ -7,7 +8,10 @@ export const fakeStoreApi = createApi({
     getCategories: builder.query({
       query: () => '/products/categories',
     }),
+    getProductsByCategory: builder.query({
+      query: category => `/products/category/${category}`,
+    }),
   }),
 });
 
-export const { useGetCategoriesQuery } = fakeStoreApi;
+export const { useGetCategoriesQuery, useGetProductsByCategoryQuery } = fakeStoreApi;

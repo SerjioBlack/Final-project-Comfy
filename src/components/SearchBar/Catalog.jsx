@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useGetCategoriesQuery } from '../../redux/apiSlice';
+import { Link } from 'react-router-dom';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -8,19 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import GridViewIcon from '@mui/icons-material/GridView';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import LaptopIcon from '@mui/icons-material/Laptop';
-import BlenderIcon from '@mui/icons-material/Blender';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
-import WatchIcon from '@mui/icons-material/Watch';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import RoofingIcon from '@mui/icons-material/Roofing';
-import SpeakerIcon from '@mui/icons-material/Speaker';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import CountertopsIcon from '@mui/icons-material/Countertops';
 
 export default function Catalog() {
   const [open, setOpen] = useState(true);
@@ -55,7 +44,7 @@ export default function Catalog() {
             <ListItemIcon>
               <GridViewIcon color="white" />
             </ListItemIcon>
-            <ListItemText primary="Catalogue" />
+            <ListItemText primary="CATALOGUE" />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
         </ListSubheader>
@@ -64,8 +53,10 @@ export default function Catalog() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {categories.map(category => (
-            <ListItemButton key={category} sx={{ pl: 4 }}>
-              <ListItemText primary={category} />
+            <ListItemButton key={category} sx={{ pl: 5 }}>
+              <Link to={`/${category}`} style={{ textDecoration: 'none', color: 'inherit', textTransform:'uppercase' }}>
+                <ListItemText primary={category} />
+              </Link>
             </ListItemButton>
           ))}
         </List>
