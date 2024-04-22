@@ -1,0 +1,17 @@
+{
+    "en": {
+      "footerForm.subscribeSale": "Subscribe for Sale!!!😍",
+      "footerForm.email": "Email",
+      "footerForm.invalidEmail": "Invalid email address",
+      "footerForm.emailSubmitted": "Email submitted: {{email}}",
+      "footerForm.subscribe": "Subscribe"
+    },
+    "ua": {
+      "footerForm.subscribeSale": "Підписатися на Розпродаж!!!😍",
+      "footerForm.email": "Електронна пошта",
+      "footerForm.invalidEmail": "Недійсна адреса електронної пошти",
+      "footerForm.emailSubmitted": "Електронна пошта надіслана: {{email}}",
+      "footerForm.subscribe": "Підписатися"
+    }
+  }
+  
