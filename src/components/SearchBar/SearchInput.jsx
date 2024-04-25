@@ -18,6 +18,25 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import { TextField } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+const loginUser = async () => {
+  const response = await fetch('https://fakestoreapi.com/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({
+      username: 'mor_2314',
+      password: '83r5^_'
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  return data.token;
+};
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,7 +71,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'black',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 1),
-    // vertical padding + font size from searchIcon
     transition: theme.transitions.create('width'),
     width: '100%',
     backgroundColor: 'white',
@@ -63,127 +81,57 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchInput() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [loginData, setLoginData] = React.useState({ username: 'mor_2314', password: '83r5^_' });
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleLoginClick = () => {
+    setOpen(true);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+  const handleLoginSubmit = () => {
+    loginUser().then(token => {
+      if (token) {
+        setSnackbarOpen(true);
+      }
+    });
   };
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({ ...loginData, [name]: value });
+  };
 
   return (
-    <Box sx={{ flexGrow: 1, }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: 'success.main', pr: 2 }}>
-        <Toolbar sx={{ display:'flex', justifyContent:'center', alignItems:'center' }}>
-          
-         
+        <Toolbar sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Search color='success'>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase sx={{ width: { xs: '200px', md: '600px' }}}
+            <StyledInputBase sx={{ width: { xs: '200px', md: '600px' } }}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex', justifyContent: 'center'  } }}>
-
-          <Stack spacing={2} direction="row">
-      <Button variant="outlined"  style={{ whiteSpace: 'nowrap', borderColor: 'white', color:'white' }}>Log In</Button>
-    </Stack>
-
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit" >
+          <Box sx={{ display: { xs: 'none', md: 'flex', justifyContent: 'center' } }}>
+            <Stack spacing={2} direction="row">
+              <Button variant="outlined" style={{ whiteSpace: 'nowrap', borderColor: 'white', color: 'white' }} onClick={handleLoginClick}>Log In</Button>
+            </Stack>
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <BalanceIcon />
               </Badge>
@@ -192,7 +140,6 @@ export default function SearchInput() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              
             >
               <Badge badgeContent={17} color="error">
                 <FavoriteBorderIcon />
@@ -202,22 +149,20 @@ export default function SearchInput() {
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
+              aria-controls="primary-search-account-menu"
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
               color="inherit"
             >
               <ShoppingCartIcon />
             </IconButton>
             <p>Cart</p>
-            </Box>
+          </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"
-              aria-controls={mobileMenuId}
+              aria-controls="primary-search-account-menu-mobile"
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
               color="inherit"
             >
               <ShoppingCartIcon />
@@ -225,8 +170,59 @@ export default function SearchInput() {
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+
+      {/* Modal for Login */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          p: 4,
+          minWidth: '300px',
+          maxWidth: '400px',
+          borderRadius: '10px',
+          textAlign: 'center'
+        }}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Login
+          </Typography>
+          <TextField
+            label="Username"
+            name="username"
+            value={loginData.username}
+            onChange={handleChange}
+            fullWidth
+            variant="outlined"
+            sx={{ mt: 2 }}
+          />
+          <TextField
+            label="Password"
+            name="password"
+            value={loginData.password}
+            onChange={handleChange}
+            fullWidth
+            variant="outlined"
+            type="password"
+            sx={{ mt: 2 }}
+          />
+          <Button variant="outlined" onClick={handleLoginSubmit} sx={{ mt: 2 }}>Log In</Button>
+        </Box>
+      </Modal>
+
+      {/* Snackbar for Successful Login */}
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+          User logged in successfully!
+        </MuiAlert>
+      </Snackbar>
     </Box>
   );
 }
