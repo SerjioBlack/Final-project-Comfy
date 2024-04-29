@@ -8,7 +8,6 @@ const card = {
     display: 'flex', 
     justifyContent: 'center',
     alignItems: 'flex-start',
-
  };
 
  const icon = {

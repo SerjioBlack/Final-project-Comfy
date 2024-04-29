@@ -11,8 +11,6 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
-
-
 const CallMenu = styled((props) => (
   <Menu
     elevation={0}
@@ -77,7 +75,7 @@ export default function CustomizedMenus() {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        <AddIcCallIcon />Contact Us 
+        <AddIcCallIcon />Contact Us
       </Button>
       <CallMenu
         id="demo-customized-menu"

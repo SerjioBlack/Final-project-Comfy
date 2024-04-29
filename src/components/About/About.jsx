@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import '@fontsource/roboto/400.css'; 
-import Button from '@mui/material/Button'; 
-import { green } from '@mui/material/colors'; 
+import '@fontsource/roboto/400.css';
+import Button from '@mui/material/Button';
+import { green } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';;
 
 
 const About = () => {
   const [showFullText, setShowFullText] = useState(false);
-
   const textStyle = {
-    fontFamily: 'Roboto, sans-serif',  };
+    fontFamily: 'Roboto, sans-serif',
+  };
 
   const fullText = `The Comfy company has existed on the Ukrainian market for more than 10 years and during this time has managed to receive the title of one of the best stores of modern equipment. It all started with small points of sale, until the company decided to conquer the world of online trading. Since then, any resident of Ukraine can order original equipment from global manufacturers with fast delivery to their city. What was the reason for Comfy’s success among Ukrainians?
 
@@ -55,9 +55,9 @@ const About = () => {
       <p style={textStyle}>{paragraphs[0]}</p>
 
       {!showFullText && (
-        <Button 
-          variant="contained" 
-          color="success" 
+        <Button
+          variant="contained"
+          color="success"
           onClick={() => setShowFullText(true)}
         >
           Show more

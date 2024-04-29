@@ -36,16 +36,13 @@ export default function Catalog() {
               height: 65,
               bgcolor: 'success.main',
               color: 'white',
-              '&:hover': {
-                bgcolor: 'success.main !important'
-              }
             }}
           >
             <ListItemIcon>
               <GridViewIcon color="white" />
             </ListItemIcon>
             <ListItemText primary="CATALOGUE" />
-            {open ? <ExpandLess /> : <ExpandMore />}
+            {open ? <ExpandMore /> : <ExpandLess />}
           </ListItemButton>
         </ListSubheader>
       }

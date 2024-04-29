@@ -1,17 +1,15 @@
 import React from 'react';
 import ResponsiveAppBar from '../components/ResponsiveAppBar';
-import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer';
-import { Typography } from '@mui/material';
+import SearchBarProduct from '../components/SearchBar/SearchBarProduct';
+
 
 const ProductLayout = ({ children }) => {
   return (
     <div>
       <ResponsiveAppBar />
-      <SearchBar />
-      
+      <SearchBarProduct />
         {children}
-      
       <Footer />
     </div>
   );

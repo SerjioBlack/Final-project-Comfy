@@ -18,11 +18,11 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const iconDiv = {
-    display:'flex', alignItems:'center', gap:'10px', justifyContent:'space-between' 
+  display: 'flex', alignItems: 'center', gap: '10px', justifyContent: 'space-between'
 };
 const icon = {
-    width:35, height:35, color: 'green'
- }
+  width: 35, height: 35, color: 'green'
+}
 
 export default function Footer() {
   return (
@@ -31,17 +31,15 @@ export default function Footer() {
         <Grid item xs={4}>
           <Item>
 
-            <div style={{display:'flex', alignItems:'center', border:'1px solid lightgrey', padding:'5px', borderRadius:'5px'}}>
-                <img src="src/assets/qr.PNG" alt="qr" />
-                <p>Download our App from PlayMarket or Appstore and get a discount 10% on first purchase</p>
+            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid lightgrey', padding: '5px', borderRadius: '5px' }}>
+              <img src="src/assets/qr.PNG" alt="qr" />
+              <p>Download our App from PlayMarket or Appstore and get a discount 10% on first purchase</p>
             </div>
-
             <FooterForm />
-
           </Item>
         </Grid>
         <Grid item xs={2}>
-          <Item style={{display:'flex', flexDirection:'column', justifyContent:'space-between', gap:'13px' }}>
+          <Item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '13px' }}>
             <h3>Comfy</h3>
             <a href="#">About company</a>
             <a href="#">The shops</a>
@@ -54,7 +52,7 @@ export default function Footer() {
           </Item>
         </Grid>
         <Grid item xs={2}>
-        <Item style={{display:'flex', flexDirection:'column', justifyContent:'space-between', gap:'13px' }}>
+          <Item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '13px' }}>
             <h3>Services</h3>
             <a href="#">Bonus program</a>
             <a href="#">Gift cards</a>
@@ -67,7 +65,7 @@ export default function Footer() {
           </Item>
         </Grid>
         <Grid item xs={2}>
-        <Item style={{display:'flex', flexDirection:'column', justifyContent:'space-between', gap:'13px' }}>
+          <Item style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '13px' }}>
             <h3>Buyer assistance</h3>
             <a href="#">Customer Help Center</a>
             <a href="#">Personal assistant</a>
@@ -81,29 +79,29 @@ export default function Footer() {
         </Grid>
 
         <Grid item xs={2}>
-          <Item style={{display:'flex', flexDirection:'column', alignItems:'start', }}>
+          <Item style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', }}>
             <h3>Consulting</h3>
-            <p style={{ fontSize:'21px', fontWeight:'700', color:'green', lineHeight:'1px' }}>0-800-303-505</p>
-            <p style={{ fontSize:'21px', fontWeight:'700', color:'green', lineHeight:'1px'  }}>0-800-600-506</p>
+            <p style={{ fontSize: '21px', fontWeight: '700', color: 'green', lineHeight: '1px' }}>0-800-303-505</p>
+            <p style={{ fontSize: '21px', fontWeight: '700', color: 'green', lineHeight: '1px' }}>0-800-600-506</p>
 
             <div style={iconDiv}>
-            <HelpOutlineIcon style={icon} />
-            <p>Help Center</p>
+              <HelpOutlineIcon style={icon} />
+              <p>Help Center</p>
             </div>
 
             <div style={iconDiv}>
-            <MarkUnreadChatAltIcon style={icon} />
-            <p>Chat</p>
+              <MarkUnreadChatAltIcon style={icon} />
+              <p>Chat</p>
             </div>
 
             <div style={iconDiv}>
-            <TelegramIcon style={icon} />
-            <p>Telegram</p>
+              <TelegramIcon style={icon} />
+              <p>Telegram</p>
             </div>
 
             <div style={iconDiv}>
-            <WhatsAppIcon style={icon} />
-            <p>WhatsApp</p>
+              <WhatsAppIcon style={icon} />
+              <p>WhatsApp</p>
             </div>
 
           </Item>

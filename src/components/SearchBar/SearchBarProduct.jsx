@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import { useGetCategoriesQuery } from '../../redux/apiSlice';
 import Catalog from './Catalog';
 import SearchInput from './SearchInput';
@@ -34,9 +34,6 @@ const SearchBar = ({ categories }) => {
         <Item>
           <Sale />
         </Item>
-        <Item>
-          <Slider />
-        </Item>
       </Grid>
     </Grid>
   );
@@ -44,7 +41,7 @@ const SearchBar = ({ categories }) => {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories, 
+    categories: state.categories,
   };
 };
 

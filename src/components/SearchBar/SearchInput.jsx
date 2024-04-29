@@ -22,6 +22,9 @@ import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
+import CartButton from './CartButton';
 
 const loginUser = async () => {
   const response = await fetch('https://fakestoreapi.com/auth/login', {
@@ -46,7 +49,7 @@ const Search = styled('div')(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginRight: theme.spacing(3),
-  
+
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(2),
@@ -84,6 +87,7 @@ export default function SearchInput() {
   const [open, setOpen] = React.useState(false);
   const [loginData, setLoginData] = React.useState({ username: 'mor_2314', password: '83r5^_' });
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
   const handleLoginClick = () => {
     setOpen(true);
@@ -101,11 +105,41 @@ export default function SearchInput() {
   };
 
   const handleLoginSubmit = () => {
-    loginUser().then(token => {
-      if (token) {
-        setSnackbarOpen(true);
+    fetch('https://fakestoreapi.com/users', {
+      method: "POST",
+      body: JSON.stringify({
+        email: 'John@gmail.com',
+        username: 'johnd',
+        password: 'm38rmF$',
+        name: {
+          firstname: 'John',
+          lastname: 'Doe'
+        },
+        address: {
+          city: 'kilcoole',
+          street: '7835 new road',
+          number: 3,
+          zipcode: '12926-3874',
+          geolocation: {
+            lat: '-37.3159',
+            long: '81.1496'
+          }
+        },
+        phone: '1-570-236-7033'
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
-    });
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log("Newly added user:", json);
+        dispatch(setUser(json));
+        setSnackbarOpen(true); 
+      })
+      .catch(error => {
+        console.error("Failed to add user:", error);
+      });
   };
 
   const handleChange = (e) => {
@@ -153,19 +187,6 @@ export default function SearchInput() {
               aria-haspopup="true"
               color="inherit"
             >
-              <ShoppingCartIcon />
-            </IconButton>
-            <p>Cart</p>
-          </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="show more"
-              aria-controls="primary-search-account-menu-mobile"
-              aria-haspopup="true"
-              color="inherit"
-            >
-              <ShoppingCartIcon />
             </IconButton>
           </Box>
         </Toolbar>

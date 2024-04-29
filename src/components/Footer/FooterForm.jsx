@@ -19,9 +19,7 @@ export default function FooterForm() {
       setError('Invalid email address');
       return;
     }
-    // Здесь можно добавить логику для отправки информации, например, вызвать API или выполнить другие действия.
     console.log('Email submitted:', email);
-
     setEmail('');
   };
 
@@ -31,13 +29,13 @@ export default function FooterForm() {
   };
 
   return (
-    <div style={{marginTop:'10px', border:'1px solid lightgrey', padding:'5px', borderRadius:'5px', paddingLeft:'10px', paddingRight:'10px'}}>
+    <div style={{ marginTop: '10px', border: '1px solid lightgrey', padding: '5px', borderRadius: '5px', paddingLeft: '10px', paddingRight: '10px' }}>
       <h4>Subscribe for Sale!!!😍 </h4>
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          '& .MuiTextField-root': {  width: '48ch', mb: 2 },
+          '& .MuiTextField-root': { width: '48ch', mb: 2 },
         }}
         noValidate
         autoComplete="off"
@@ -55,12 +53,11 @@ export default function FooterForm() {
         </div>
       </Box>
       <Stack spacing={2} direction="row" >
-        <Button 
-          variant="contained" 
-          color='success' 
-          sx={{width: '50ch', p: 2}} 
+        <Button
+          variant="contained"
+          color='success'
+          sx={{ width: '50ch', p: 2 }}
           type="submit"
-          
         >
           Subscribe
         </Button>
